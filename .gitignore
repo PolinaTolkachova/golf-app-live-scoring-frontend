@@ -1,12 +1,75 @@
-.idea
-
+# IDE-specific files
+.idea/
 .classpath
 .project
-.settings
+.settings/
 .factorypath
+.vscode/
 
-.vscode
+# Dependency directories
+node_modules/
 
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for package manager
+lib-cov
+coverage/
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Bookmark-based environment variables
+.env
+.env.*.local
+
+# Editor artifacts
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Build directories
+dist/
+build/
+out/
+
+# Compiled files
 **/bin/
 **/obj/
 **/target/
+
+# npm-related
+node_modules
+
+# Yarn related
+.yarn-integrity
+.pnp.*
+
+# Miscellaneous
+*.sublime-workspace
+*.sublime-project
+.coverage
+
+# MacOS
+*.DS_Store
+
+# Visual Studio Code workspace storage
+.vscode/
+.history/
+
+# JetBrains IDEs
+*.iml
+.idea/
