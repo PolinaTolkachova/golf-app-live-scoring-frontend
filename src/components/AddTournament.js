@@ -54,4 +54,5 @@ const AddTournament = ({ onTournamentAdded }) => {
   );
 };
 
+
 export default AddTournament;
