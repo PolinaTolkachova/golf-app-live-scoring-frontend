@@ -24,6 +24,12 @@ const App = () => {
                 Players
               </NavLink>
             </li>
+            <li>
+              {/* NavLink for the Players component, becomes active on /players path */}
+              <NavLink to="/leaderboards" activeClassName="active">
+                Leaderboards
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
