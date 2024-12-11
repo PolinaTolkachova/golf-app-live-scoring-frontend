@@ -5,6 +5,7 @@ import axios from 'axios'; // Import Axios for making HTTP requests
 const Leaderboards = () => {
     // State to hold tournament data, initialized as an empty array
     const [leaderboards, setLeaderboards] = useState([]);
+    const [showAddForm, setShowAddForm] = useState(false); // State to toggle form visibility
 
     // useEffect hook to perform side-effects (fetching data from API) when the component mounts
     useEffect(() => {
@@ -34,8 +35,9 @@ const Leaderboards = () => {
                 <tbody>
                     {leaderboards.map(leaderboard => (
                         // Render a table row for each tournament, using leaderboardID as a unique key
-                        <tr key={leaderboard.leaderboardID}>
-                            <td>{leaderboard.tournamentID}</td>
+                        <tr key={leaderboard.id}>
+                            <td>{leaderboard.id}</td>
+                            <td>{leaderboard.tournament_id}</td>
                         </tr>
                     ))}
                 </tbody>
