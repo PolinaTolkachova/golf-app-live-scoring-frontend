@@ -26,7 +26,7 @@ const App = () => {
               </NavLink>
             </li>
             <li>
-              {/* NavLink for the Players component, becomes active on /players path */}
+              {/* NavLink for the Leaderboards component, becomes active on /leaderboards path */}
               <NavLink to="/leaderboards" activeClassName="active">
                 Leaderboards
               </NavLink>

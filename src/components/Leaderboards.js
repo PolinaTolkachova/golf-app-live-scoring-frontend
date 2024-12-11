@@ -24,7 +24,7 @@ const Leaderboards = () => {
     // JSX to render the component UI in a table format
     return (
         <div>
-            <h1>Leaderboards Leaderboard</h1>
+            <h1>Leaderboards</h1>
             <table>
                 <thead>
                     <tr>
@@ -37,7 +37,7 @@ const Leaderboards = () => {
                         // Render a table row for each tournament, using leaderboardID as a unique key
                         <tr key={leaderboard.id}>
                             <td>{leaderboard.id}</td>
-                            <td>{leaderboard.tournament_id}</td>
+                            <td>{leaderboard.tournament.name}</td>
                         </tr>
                     ))}
                 </tbody>
