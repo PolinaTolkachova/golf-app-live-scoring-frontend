@@ -41,6 +41,7 @@ To set up the Live Scoring Golf Application frontend, follow these steps:
    npm install react-router-dom@5
    npm install http-proxy-middleware
    set NODE_OPTIONS=--openssl-legacy-provider
+   npm install bootstrap
    ```
 
    *Note*: The `NODE_OPTIONS=--openssl-legacy-provider` is included in case you encounter OpenSSL issues during development with certain Node.js versions.

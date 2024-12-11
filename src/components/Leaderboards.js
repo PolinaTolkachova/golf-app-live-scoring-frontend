@@ -9,7 +9,7 @@ const Leaderboards = () => {
 
     // useEffect hook to perform side-effects (fetching data from API) when the component mounts
     useEffect(() => {
-        // Axios GET request to fetch tournaments data from the API
+        // Axios GET request to fetch leaderboard data from the API
         axios.get('http://localhost:8082/leaderboard')
             .then(response => {
                 // On successful data retrieval, update the leaderboards state
