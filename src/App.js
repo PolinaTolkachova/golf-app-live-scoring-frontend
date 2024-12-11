@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/" exact component={Tournaments} />
           {/* Route for the Players component at the /players path */}
           <Route path="/players" component={Players} />
-          {/* Route for the Players component at the /players path */}
+          {/* Route for the Leaderboards component at the /leaderboards path */}
           <Route path="/leaderboards" component={Leaderboards} />
         </Switch>
       </div>

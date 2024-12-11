@@ -3,7 +3,7 @@ import axios from 'axios'; // Import Axios for making HTTP requests
 
 // Functional component for displaying a list of leaderboards in a table format
 const Leaderboards = () => {
-    // State to hold tournament data, initialized as an empty array
+    // State to hold leaderboards data, initialized as an empty array
     const [leaderboards, setLeaderboards] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false); // State to toggle form visibility
 
@@ -12,7 +12,7 @@ const Leaderboards = () => {
         // Axios GET request to fetch tournaments data from the API
         axios.get('http://localhost:8082/leaderboard')
             .then(response => {
-                // On successful data retrieval, update the tournaments state
+                // On successful data retrieval, update the leaderboards state
                 setLeaderboards(response.data);
             })
             .catch(error => {
@@ -34,7 +34,7 @@ const Leaderboards = () => {
                 </thead>
                 <tbody>
                     {leaderboards.map(leaderboard => (
-                        // Render a table row for each tournament, using leaderboardID as a unique key
+                        // Render a table row for each leaderboard, using leaderboardID as a unique key
                         <tr key={leaderboard.id}>
                             <td>{leaderboard.id}</td>
                             <td>{leaderboard.tournament.name}</td>
