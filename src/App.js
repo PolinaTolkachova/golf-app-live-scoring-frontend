@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import Tournaments from './components/Tournaments';
 import Players from './components/Players';
+import Leaderboards from './components/Leaderboards';
 
 // Define the main App component
 const App = () => {
@@ -24,6 +25,12 @@ const App = () => {
                 Players
               </NavLink>
             </li>
+            <li>
+              {/* NavLink for the Leaderboards component, becomes active on /leaderboards path */}
+              <NavLink to="/leaderboards" activeClassName="active">
+                Leaderboards
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
@@ -33,6 +40,8 @@ const App = () => {
           <Route path="/" exact component={Tournaments} />
           {/* Route for the Players component at the /players path */}
           <Route path="/players" component={Players} />
+          {/* Route for the Leaderboards component at the /leaderboards path */}
+          <Route path="/leaderboards" component={Leaderboards} />
         </Switch>
       </div>
     </Router>
