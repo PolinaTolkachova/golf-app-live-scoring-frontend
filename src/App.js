@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import Tournaments from './components/Tournaments';
 import Players from './components/Players';
+import Leaderboards from './components/Leaderboards';
 
 // Define the main App component
 const App = () => {
@@ -39,6 +40,8 @@ const App = () => {
           <Route path="/" exact component={Tournaments} />
           {/* Route for the Players component at the /players path */}
           <Route path="/players" component={Players} />
+          {/* Route for the Players component at the /players path */}
+          <Route path="/leaderboards" component={Leaderboards} />
         </Switch>
       </div>
     </Router>
