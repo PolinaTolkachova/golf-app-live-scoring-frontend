@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddTournament = ({ onTournamentAdded }) => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ const AddTournament = ({ onTournamentAdded }) => {
     startDate: '',
     finishDate: '',
     scoringType: '',
-    format: ''
+    format: '',
   });
 
   const handleChange = (e) => {
@@ -30,7 +31,7 @@ const AddTournament = ({ onTournamentAdded }) => {
           startDate: '',
           finishDate: '',
           scoringType: '',
-          format: ''
+          format: '',
         });
       })
       .catch(error => {
@@ -40,15 +41,92 @@ const AddTournament = ({ onTournamentAdded }) => {
 
   return (
     <div>
-      <h2>Add New Tournament</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required />
-        <input type="date" name="startDate" value={formData.startDate} onChange={handleChange} required />
-        <input type="date" name="finishDate" value={formData.finishDate} onChange={handleChange} required />
-        <input type="text" name="scoringType" placeholder="Scoring Type" value={formData.scoringType} onChange={handleChange} required />
-        <input type="text" name="format" placeholder="Format" value={formData.format} onChange={handleChange} required />
-        <button type="submit">Add Tournament</button>
+      <h2>Add Tournament</h2>
+      <form onSubmit={handleSubmit} className="border rounded p-3 bg-light">
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="form-control mb-2"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="location">Location:</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            className="form-control mb-2"
+            placeholder="Location"
+            value={formData.location}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group row">
+          <div className="col">
+            <label htmlFor="startDate">Start Date:</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              className="form-control mb-2"
+              value={formData.startDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="col">
+            <label htmlFor="finishDate">Finish Date:</label>
+            <input
+              type="date"
+              id="finishDate"
+              name="finishDate"
+              className="form-control mb-2"
+              value={formData.finishDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="scoringType">Scoring Type:</label>
+          <input
+            type="text"
+            id="scoringType"
+            name="scoringType"
+            className="form-control mb-2"
+            placeholder="Scoring Type"
+            value={formData.scoringType}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="format">Format:</label>
+          <input
+            type="text"
+            id="format"
+            name="format"
+            className="form-control mb-2"
+            placeholder="Format"
+            value={formData.format}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary mt-3">Add Tournament</button>
       </form>
     </div>
   );
