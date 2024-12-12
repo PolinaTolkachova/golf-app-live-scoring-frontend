@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import Tournaments from './components/Tournaments';
+import Tournaments from './components/tournament/Tournaments';
 import Players from './components/Players';
 import Leaderboards from './components/Leaderboards';
 import './App.css';
