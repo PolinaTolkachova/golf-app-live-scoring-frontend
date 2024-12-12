@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react'; // Import React library along with useEffect and useState hooks
-import axios from 'axios'; // Import Axios for making HTTP requests
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// Functional component for displaying a list of leaderboards in a table format
 const Leaderboards = () => {
-    // State to hold leaderboards data, initialized as an empty array
     const [leaderboards, setLeaderboards] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false); // State to toggle form visibility
+    const [showAddForm, setShowAddForm] = useState(false);
 
     // useEffect hook to perform side-effects (fetching data from API) when the component mounts
     useEffect(() => {
-        // Axios GET request to fetch leaderboard data from the API
         axios.get('http://localhost:8082/leaderboard')
             .then(response => {
                 // On successful data retrieval, update the leaderboards state
                 setLeaderboards(response.data);
             })
             .catch(error => {
-                // Log an error message if the request fails
                 console.error('There was an error fetching the leaderboards!', error);
             });
-    }, []); // Empty dependency array ensures this effect runs only once on component mount
+    }, []);
 
-    // JSX to render the component UI in a table format
     return (
         <div>
             <h1>Leaderboards</h1>
@@ -34,7 +29,6 @@ const Leaderboards = () => {
                 </thead>
                 <tbody>
                     {leaderboards.map(leaderboard => (
-                        // Render a table row for each leaderboard, using leaderboardID as a unique key
                         <tr key={leaderboard.id}>
                             <td>{leaderboard.id}</td>
                             <td>{leaderboard.tournament.name}</td>
@@ -46,4 +40,4 @@ const Leaderboards = () => {
     );
 };
 
-export default Leaderboards; // Export the Leaderboards component as default
+export default Leaderboards;
