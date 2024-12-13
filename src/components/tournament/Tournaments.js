@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AddTournament from './AddTournament';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Tournaments = () => {
   const [tournaments, setTournaments] = useState([]);
-  const [showAddForm, setShowAddForm] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:8082/tournament')
@@ -17,23 +17,17 @@ const Tournaments = () => {
       });
   }, []);
 
-  const handleAddTournament = (newTournament) => {
-    setTournaments([...tournaments, newTournament]);
-    setShowAddForm(false);
-  };
-
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Tournaments</h1>
         <button
           className="btn btn-primary"
-          onClick={() => setShowAddForm(!showAddForm)}
+          onClick={() => history.push('/add-tournament')}
         >
-          {showAddForm ? 'Cancel' : 'Add Tournament'}
+          Add Tournament
         </button>
       </div>
-      {showAddForm && <AddTournament onTournamentAdded={handleAddTournament} />}
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>
