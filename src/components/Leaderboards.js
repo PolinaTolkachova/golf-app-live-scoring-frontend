@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Leaderboards = () => {
-    const [leaderboards, setLeaderboards] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false);
+  const [leaderboards, setLeaderboards] = useState([]);
 
-    // useEffect hook to perform side-effects (fetching data from API) when the component mounts
-    useEffect(() => {
-        axios.get('http://localhost:8082/leaderboard')
-            .then(response => {
-                // On successful data retrieval, update the leaderboards state
-                setLeaderboards(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the leaderboards!', error);
-            });
-    }, []);
+  useEffect(() => {
+    axios.get('http://localhost:8082/leaderboard')
+      .then(response => {
+        setLeaderboards(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the leaderboards!', error);
+      });
+  }, []);
 
-    return (
-        <div>
-            <h1>Leaderboards</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>LeaderboardID</th>
-                        <th>TournamentID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {leaderboards.map(leaderboard => (
-                        <tr key={leaderboard.id}>
-                            <td>{leaderboard.id}</td>
-                            <td>{leaderboard.tournament.name}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>Leaderboards</h1>
+        {/* Add other controls here if needed, similar to Players */}
+      </div>
+      <table className="table table-striped table-bordered">
+        <thead className="thead-dark">
+          <tr>
+            <th>Leaderboard ID</th>
+            <th>Tournament Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboards.map(leaderboard => (
+            <tr key={leaderboard.id}>
+              <td>{leaderboard.id}</td>
+              <td>{leaderboard.tournament.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Leaderboards;
