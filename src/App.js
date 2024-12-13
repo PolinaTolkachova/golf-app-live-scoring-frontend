@@ -29,7 +29,7 @@ const App = () => {
             </li>
           </ul>
         </nav>
-        <SwitchC
+        <Switch>
           <Route path="/" exact component={Tournaments} />
           <Route path="/players" component={Players} />
           <Route path="/leaderboards" component={Leaderboards} />
