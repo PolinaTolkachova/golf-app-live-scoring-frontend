@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import Tournaments from './components/tournament/Tournaments';
-import Players from './components/Players';
-import Leaderboards from './components/Leaderboards';
+import Players from './components/player/Players';
+import Leaderboards from './components/leaderboard/Leaderboards';
 import './App.css';
 
 const App = () => {

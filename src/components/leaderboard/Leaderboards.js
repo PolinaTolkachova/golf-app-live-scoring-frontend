@@ -19,7 +19,6 @@ const Leaderboards = () => {
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Leaderboards</h1>
-        {/* Add other controls here if needed, similar to Players */}
       </div>
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
