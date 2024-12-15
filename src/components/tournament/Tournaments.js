@@ -21,10 +21,7 @@ const Tournaments = () => {
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Tournaments</h1>
-        <button
-          className="btn btn-primary"
-          onClick={() => history.push('/add-tournament')}
-        >
+        <button className="btn btn-primary" onClick={() => history.push('/add-tournament')}>
           Add Tournament
         </button>
       </div>
@@ -41,7 +38,7 @@ const Tournaments = () => {
         </thead>
         <tbody>
           {tournaments.map(tournament => (
-            <tr key={tournament.id}>
+            <tr key={tournament.id} onClick={() => history.push(`/tournament/${tournament.id}`)} style={{ cursor: 'pointer' }}>
               <td>{tournament.name}</td>
               <td>{tournament.location}</td>
               <td>{tournament.startDate}</td>
