@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const AddTournament = ({ onTournamentAdded }) => {
+const AddTournament = () => {
   const [formData, setFormData] = useState({
     name: '',
     location: '',
@@ -11,6 +12,8 @@ const AddTournament = ({ onTournamentAdded }) => {
     scoringType: '',
     format: '',
   });
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +25,18 @@ const AddTournament = ({ onTournamentAdded }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios.post('http://localhost:8082/tournament', formData)
       .then(response => {
-        onTournamentAdded(response.data);
-        setFormData({ name: '', location: '', startDate: '', finishDate: '', scoringType: '', format: '' });
+        setFormData({
+          name: '',
+          location: '',
+          startDate: '',
+          finishDate: '',
+          scoringType: '',
+          format: ''
+        });
+        history.push('/');
       })
       .catch(error => {
         console.error('There was an error creating the tournament!', error);
