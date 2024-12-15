@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Tournament = () => {
   const { id } = useParams();
@@ -59,68 +60,65 @@ const Tournament = () => {
       });
   };
 
-  if (!tournament) return <div>Loading...</div>;
+  if (!tournament) return <div className="text-center">Loading...</div>;
 
   return (
     <div className="container mt-4">
-      <h2>Tournament Details - {tournament.name}</h2>
-      <button className="btn btn-secondary mb-4" onClick={() => history.push('/')}>Back to Tournaments</button>
-      <table className="table table-striped">
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <td>{tournament.name}</td>
-          </tr>
-          <tr>
-            <th>Location</th>
-            <td>{tournament.location}</td>
-          </tr>
-          <tr>
-            <th>Start Date</th>
-            <td>{tournament.startDate}</td>
-          </tr>
-          <tr>
-            <th>Finish Date</th>
-            <td>{tournament.finishDate}</td>
-          </tr>
-          <tr>
-            <th>Scoring Type</th>
-            <td>{tournament.scoringType}</td>
-          </tr>
-          <tr>
-            <th>Format</th>
-            <td>{tournament.format}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3 className="mt-4">Players in this Tournament</h3>
-      <ul className="list-group mb-3">
-        {tournament.players && tournament.players.length > 0 ? (
-          tournament.players.map(player => (
-            <li key={player.id} className="list-group-item">
-              {player.user.username} - Handicap: {player.handicap}
-            </li>
-          ))
-        ) : (
-          <li className="list-group-item">No players added to this tournament yet.</li>
-        )}
-      </ul>
-
-      <h3 className="mt-4">Add Players</h3>
-      <div className="list-group mb-3">
-        {players.map(player => (
-          <div key={player.id} className="list-group-item">
-            <input
-              type="checkbox"
-              checked={selectedPlayers.has(player.id)}
-              onChange={() => handlePlayerSelection(player.id)}
-            />
-            <span className="ms-2">{player.user.username} - Handicap: {player.handicap}</span>
+      <div className="card mb-4">
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h4 className="mb-0">{tournament.name}</h4>
+          <button className="btn btn-secondary" onClick={() => history.push('/')}>Back to Tournaments</button>
+        </div>
+        <div className="card-body">
+          <div className="row">
+            <div className="col-md-6">
+              <h5>Tournament Details</h5>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item"><strong>Location:</strong> {tournament.location}</li>
+                <li className="list-group-item"><strong>Start Date:</strong> {tournament.startDate}</li>
+                <li className="list-group-item"><strong>Finish Date:</strong> {tournament.finishDate}</li>
+                <li className="list-group-item"><strong>Scoring Type:</strong> {tournament.scoringType}</li>
+                <li className="list-group-item"><strong>Format:</strong> {tournament.format}</li>
+              </ul>
+            </div>
+            <div className="col-md-6">
+              <h5>Players in this Tournament</h5>
+              <ul className="list-group list-group-flush">
+                {tournament.players && tournament.players.length > 0 ? (
+                  tournament.players.map(player => (
+                    <li key={player.id} className="list-group-item">
+                      {player.user.username} - Handicap: {player.handicap}
+                    </li>
+                  ))
+                ) : (
+                  <li className="list-group-item">No players added to this tournament yet.</li>
+                )}
+              </ul>
+            </div>
           </div>
-        ))}
+        </div>
       </div>
-      <button className="btn btn-primary" onClick={handleAddPlayers}>Add Selected Players</button>
+
+      <div className="card">
+        <div className="card-header">
+          <h5>Add Players</h5>
+        </div>
+        <div className="card-body">
+          <div className="list-group">
+            {players.map(player => (
+              <div key={player.id} className="list-group-item">
+                <input
+                  type="checkbox"
+                  checked={selectedPlayers.has(player.id)}
+                  onChange={() => handlePlayerSelection(player.id)}
+                />
+                <span className="ms-2">{player.user.username} - Handicap: {player.handicap}</span>
+              </div>
+            ))}
+          </div>
+          <button className="btn btn-primary mt-3" onClick={handleAddPlayers}>Add Selected Players</button>
+        </div>
+      </div>
     </div>
   );
 };
