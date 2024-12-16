@@ -23,15 +23,17 @@ const Leaderboards = () => {
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>
-            <th>Leaderboard ID</th>
             <th>Tournament Name</th>
+            <th>Tournament Start Date</th>
+            <th>Tournament Finish Date</th>
           </tr>
         </thead>
         <tbody>
           {leaderboards.map(leaderboard => (
             <tr key={leaderboard.id}>
-              <td>{leaderboard.id}</td>
               <td>{leaderboard.tournament.name}</td>
+              <td>{leaderboard.tournament.startDate}</td>
+              <td>{leaderboard.tournament.finishDate}</td>
             </tr>
           ))}
         </tbody>
