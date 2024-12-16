@@ -25,7 +25,6 @@ const Players = () => {
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Gender</th>
@@ -35,7 +34,6 @@ const Players = () => {
         <tbody>
           {players.map(player => (
             <tr key={player.id} onClick={() => history.push(`/player/${player.id}`)} style={{ cursor: 'pointer' }}>
-              <td>{player.id}</td>
               <td>{player.user.name}</td>
               <td>{player.user.surname}</td>
               <td>{player.gender}</td>

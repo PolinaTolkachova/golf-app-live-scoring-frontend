@@ -21,16 +21,16 @@ const PlayerDetail = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Player Details - {player.user.username}</h2>
+      <h2>Player Details - {player.user.name} {player.user.surname}</h2>
       <table className="table table-striped">
         <tbody>
           <tr>
-            <th>Id</th>
-            <td>{player.id}</td>
+            <th>Name</th>
+            <td>{player.user.name}</td>
           </tr>
           <tr>
-            <th>Name</th>
-            <td>{player.user.username}</td>
+            <th>Surname</th>
+            <td>{player.user.surname}</td>
           </tr>
           <tr>
             <th>Gender</th>
