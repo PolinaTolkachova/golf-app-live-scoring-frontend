@@ -108,7 +108,7 @@ const Tournament = () => {
            {players.map(player => (
              <div key={player.id} className="list-group-item">
                <input type="checkbox" checked={selectedPlayers.has(player.id)} onChange={() => handlePlayerSelection(player.id)} />
-               <span className="ms-2">{player.user.username} - Handicap: {player.handicap}</span>
+               <span className="ms-2">{player.user.name} {player.user.surname}</span>
              </div>
            ))}
          </div>

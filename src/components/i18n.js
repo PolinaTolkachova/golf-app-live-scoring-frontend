@@ -19,7 +19,7 @@ i18n
          scoringType: "Scoring Type",
          format: "Format",
          noPlayersAdded: "No players added to this tournament yet.",
-         playersInTournament: "Players in this Tournament",
+         playersInTournament: "Players",
        }
      },
      ru: {
@@ -34,7 +34,7 @@ i18n
          scoringType: "Тип подсчета",
          format: "Формат",
          noPlayersAdded: "Игроки еще не добавлены в этот турнир.",
-         playersInTournament: "Игроки в этом турнире",
+         playersInTournament: "Игроки",
        }
      }
    },
