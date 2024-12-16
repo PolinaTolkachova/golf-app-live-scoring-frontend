@@ -21,8 +21,8 @@ const PlayerDetail = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Player Details - {player.name}</h2>
-      <button className="btn btn-secondary mb-4" onClick={() => history.push('/')}>Back to Players</button>
+      <h2>Player Details - {player.user.username}</h2>
+      <button className="btn btn-secondary mb-4" onClick={() => history.push('/players')}>Back to Players</button>
       <table className="table table-striped">
         <tbody>
           <tr>
@@ -31,7 +31,7 @@ const PlayerDetail = () => {
           </tr>
           <tr>
             <th>Name</th>
-            <td>{player.user.name}</td>
+            <td>{player.user.username}</td>
           </tr>
           <tr>
             <th>Gender</th>

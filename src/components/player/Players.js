@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:8082/player')
