@@ -88,7 +88,7 @@ const Tournament = () => {
                {tournament.players && tournament.players.length > 0 ? (
                  tournament.players.map(player => (
                    <li key={player.id} className="list-group-item">
-                     {player.user.username} - Handicap: {player.handicap}
+                     {player.user.name} {player.user.surname}
                    </li>
                  ))
                ) : (

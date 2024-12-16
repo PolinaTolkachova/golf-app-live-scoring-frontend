@@ -18,7 +18,7 @@ i18n
          finishDate: "Finish Date",
          scoringType: "Scoring Type",
          format: "Format",
-         noPlayersAdded: "No players added to this tournament yet.",
+         noPlayersAdded: "No players added to this tournament yet",
          playersInTournament: "Players",
        }
      },
@@ -33,14 +33,14 @@ i18n
          finishDate: "Дата окончания",
          scoringType: "Тип подсчета",
          format: "Формат",
-         noPlayersAdded: "Игроки еще не добавлены в этот турнир.",
+         noPlayersAdded: "Игроки еще не добавлены в этот турнир",
          playersInTournament: "Игроки",
        }
      }
    },
    fallbackLng: "en",
    interpolation: {
-     escapeValue: false // react already safes from xss
+     escapeValue: false
    }
  });
 
