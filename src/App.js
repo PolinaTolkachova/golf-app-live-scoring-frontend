@@ -6,6 +6,8 @@ import Leaderboards from './components/leaderboard/Leaderboards';
 import AddTournament from './components/tournament/AddTournament';
 import Tournament from './components/tournament/Tournament';
 import Player from './components/player/Player';
+import LanguageSwitcher from './components/languageSwitcher/LanguageSwitcher';
+import i18n from './components/i18n';
 import './App.css';
 
 const App = () => {
@@ -39,6 +41,9 @@ const App = () => {
           <Route path="/tournament/:id" component={Tournament} />
           <Route path="/player/:id" component={Player} />
         </Switch>
+        <div>
+            <LanguageSwitcher />
+        </div>
       </div>
     </Router>
   );
