@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:8082/player')
@@ -31,7 +33,7 @@ const Players = () => {
         </thead>
         <tbody>
           {players.map(player => (
-            <tr key={player.id}>
+            <tr key={player.id} onClick={() => history.push(`/player/${player.id}`)} style={{ cursor: 'pointer' }}>
               <td>{player.id}</td>
               <td>{player.user.username}</td>
               <td>{player.gender}</td>

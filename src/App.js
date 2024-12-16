@@ -5,6 +5,7 @@ import Players from './components/player/Players';
 import Leaderboards from './components/leaderboard/Leaderboards';
 import AddTournament from './components/tournament/AddTournament';
 import Tournament from './components/tournament/Tournament';
+import Player from './components/player/Player';
 import './App.css';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/leaderboards" component={Leaderboards} />
           <Route path="/add-tournament" component={AddTournament} />
           <Route path="/tournament/:id" component={Tournament} />
+          <Route path="/player/:id" component={Player} />
         </Switch>
       </div>
     </Router>
