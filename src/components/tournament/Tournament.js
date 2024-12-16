@@ -67,7 +67,6 @@ const Tournament = () => {
       <div className="card mb-4">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h4 className="mb-0">{tournament.name}</h4>
-          <button className="btn btn-secondary" onClick={() => history.push('/')}>Back to Tournaments</button>
         </div>
         <div className="card-body">
           <div className="row">
