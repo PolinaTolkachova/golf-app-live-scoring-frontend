@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 const Leaderboard = () => {
   const { id } = useParams();
   const [leaderboard, setLeaderboard] = useState(null);
-//   const [scorecards, setScorecards] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:8082/leaderboard/${id}`)
@@ -25,12 +24,20 @@ const Leaderboard = () => {
       <table className="table table-striped mb-4">
         <tbody>
           <tr>
-            <th>Id</th>
-            <td>{leaderboard.id}</td>
-          </tr>
-          <tr>
             <th>Tournament Name</th>
             <td>{leaderboard.tournament.name}</td>
+          </tr>
+          <tr>
+            <th>Location</th>
+            <td>{leaderboard.tournament.location}</td>
+          </tr>
+          <tr>
+            <th>Start Date</th>
+            <td>{leaderboard.tournament.startDate}</td>
+          </tr>
+          <tr>
+            <th>Finish Date</th>
+            <td>{leaderboard.tournament.finishDate}</td>
           </tr>
         </tbody>
       </table>
