@@ -6,6 +6,8 @@
 .factorypath
 .vscode/
 
+yarn.lock
+
 # Dependency directories
 node_modules/
 
