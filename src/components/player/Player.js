@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Player = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
   const [scorecards, setScorecards] = useState([]);
@@ -25,33 +27,33 @@ const Player = () => {
       });
   }, [id]);
 
-  if (!player) return <div>Loading...</div>;
+  if (!player) return <div className="text-center">{t('loading')}</div>;
 
   return (
     <div className="container mt-4">
-      <h2>Player Details - {player.user.name} {player.user.surname}</h2>
+      <h2>{t('playerDetails')} - {player.user.name} {player.user.surname}</h2>
       <table className="table table-striped mb-4">
         <tbody>
           <tr>
-            <th>Name</th>
+            <th>{t('playerName')}</th>
             <td>{player.user.name}</td>
           </tr>
           <tr>
-            <th>Surname</th>
+            <th>{t('playerSurname')}</th>
             <td>{player.user.surname}</td>
           </tr>
           <tr>
-            <th>Gender</th>
+            <th>{t('playerGender')}</th>
             <td>{player.gender}</td>
           </tr>
           <tr>
-            <th>Handicap</th>
+            <th>{t('playerHandicap')}</th>
             <td>{player.handicap}</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Scorecards</h3>
+      <h3>{t('playerScorecards')}</h3>
       {scorecards.length > 0 ? (
         scorecards.map(scorecard => (
           <div key={scorecard.id} className="mb-3">
