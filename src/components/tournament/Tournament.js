@@ -13,21 +13,26 @@ const Tournament = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`http://localhost:8082/tournament/${id}`)
-      .then(response => {
+    const fetchTournamentDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8082/tournament/${id}`);
         setTournament(response.data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching tournament details:', error);
-      });
+      }
+    };
 
-    axios.get('http://localhost:8082/player')
-      .then(response => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await axios.get('http://localhost:8082/player');
         setPlayers(response.data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching players:', error);
-      });
+      }
+    };
+
+    fetchTournamentDetails();
+    fetchPlayers();
   }, [id]);
 
   const handlePlayerSelection = (playerId) => {
@@ -42,19 +47,23 @@ const Tournament = () => {
     });
   };
 
-  const handleAddPlayers = () => {
-    const playerObjects = Array.from(selectedPlayers).map(playerId => {
-      return players.find(player => player.id === playerId);
-    });
-    const updatedTournament = { ...tournament, players: playerObjects };
-    axios.post('http://localhost:8082/tournament', updatedTournament)
-      .then(() => {
-        alert(t('tournamentUpdatedSuccess'));
-        history.push(`/tournament/${id}`);
-      })
-      .catch(error => {
-        console.error('Error updating tournament:', error);
+  const handleAddPlayers = async () => {
+    try {
+      // Create player objects from the selected player IDs
+      const playerObjects = Array.from(selectedPlayers).map(playerId => {
+        return players.find(player => player.id === playerId);
       });
+
+      const updatedTournament = { ...tournament, players: playerObjects };
+      await axios.put(`http://localhost:8082/tournament/${id}`, updatedTournament);
+
+      // Refetch the updated tournament details
+      const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
+      setTournament(updatedResponse.data);
+
+    } catch (error) {
+      console.error('Error updating tournament:', error);
+    }
   };
 
   if (!tournament) return <div className="text-center">{t('loading')}</div>;
@@ -113,7 +122,9 @@ const Tournament = () => {
               </div>
             ))}
           </div>
-          <button className="btn btn-primary mt-3" onClick={handleAddPlayers}>{t('selectPlayers')}</button>
+          <button className="btn btn-primary mt-3" onClick={handleAddPlayers}>
+            {t('selectPlayers')}
+          </button>
         </div>
       </div>
     </div>
