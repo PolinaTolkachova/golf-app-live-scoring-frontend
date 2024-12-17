@@ -41,7 +41,8 @@ To set up the Live Scoring Golf Application frontend, follow these steps:
 
 2. **Install Dependencies**: Install all necessary dependencies using npm:
    ```bash
-   npm install
+   npm install -g yarn
+   npm yarn
    ```
 
 ## Usage
