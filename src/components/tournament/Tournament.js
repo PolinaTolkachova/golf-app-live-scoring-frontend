@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Tournament.css';
 
 const Tournament = () => {
   const { t } = useTranslation();
@@ -60,7 +61,6 @@ const Tournament = () => {
       // Refetch the updated tournament details
       const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
       setTournament(updatedResponse.data);
-
     } catch (error) {
       console.error('Error updating tournament:', error);
     }
@@ -110,7 +110,7 @@ const Tournament = () => {
           <h5>{t('addPlayers')}</h5>
         </div>
         <div className="card-body">
-          <div className="list-group">
+          <div className="list-group players-list-scroll">
             {players.map(player => (
               <div key={player.id} className="list-group-item">
                 <input
