@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Leaderboards = () => {
   const [leaderboards, setLeaderboards] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:8082/leaderboard')
@@ -31,7 +33,7 @@ const Leaderboards = () => {
         </thead>
         <tbody>
           {leaderboards.map(leaderboard => (
-            <tr key={leaderboard.id}>
+            <tr key={leaderboard.id} onClick={() => history.push(`/leaderboard/${leaderboard.id}`)} style={{ cursor: 'pointer' }}>
               <td>{leaderboard.tournament.name}</td>
               <td>{leaderboard.tournament.location}</td>
               <td>{leaderboard.tournament.startDate}</td>

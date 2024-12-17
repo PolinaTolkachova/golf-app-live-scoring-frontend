@@ -9,6 +9,7 @@ import Player from './components/player/Player';
 import LanguageSwitcher from './components/languageSwitcher/LanguageSwitcher';
 import i18n from './components/i18n';
 import './App.css';
+import Leaderboard from './components/leaderboard/Leaderboard';
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/add-tournament" component={AddTournament} />
           <Route path="/tournament/:id" component={Tournament} />
           <Route path="/player/:id" component={Player} />
+          <Route path="/leaderboard/:id" component={Leaderboard} />
         </Switch>
         <div>
             <LanguageSwitcher />
