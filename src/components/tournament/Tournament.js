@@ -17,6 +17,18 @@ const Tournament = () => {
     const fetchTournamentDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:8082/tournament/${id}`);
+
+        // Sort tournament players alphabetically by name
+        if (response.data && response.data.players) {
+          response.data.players.sort((a, b) => {
+            const nameA = a.user.name.toLowerCase();
+            const nameB = b.user.name.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        }
+
         setTournament(response.data);
       } catch (error) {
         console.error('Error fetching tournament details:', error);
@@ -68,6 +80,18 @@ const Tournament = () => {
 
       // Refetch the updated tournament details
       const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
+
+      // Sort newly fetched tournament data
+      if (updatedResponse.data && updatedResponse.data.players) {
+        updatedResponse.data.players.sort((a, b) => {
+          const nameA = a.user.name.toLowerCase();
+          const nameB = b.user.name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+      }
+
       setTournament(updatedResponse.data);
     } catch (error) {
       console.error('Error updating tournament:', error);
