@@ -26,7 +26,15 @@ const Tournament = () => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get('http://localhost:8082/player');
-        setPlayers(response.data);
+        // Ensure players are sorted alphabetically by name
+        const sortedPlayers = response.data.sort((a, b) => {
+          const nameA = a.user.name.toLowerCase();
+          const nameB = b.user.name.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+        setPlayers(sortedPlayers);
       } catch (error) {
         console.error('Error fetching players:', error);
       }
