@@ -20,6 +20,13 @@ i18n
          format: "Format",
          noPlayersAdded: "No players added to this tournament yet",
          playersInTournament: "Players",
+         players: "Players",
+         playerDetails: "Players Details",
+         playerName: "Name",
+         playerSurname: "Surname",
+         playerGender: "Gender",
+         playerHandicap: "Handicap",
+         playerScorecards: "Scorecards",
        }
      },
      ru: {
@@ -35,6 +42,13 @@ i18n
          format: "Формат",
          noPlayersAdded: "Игроки еще не добавлены в этот турнир",
          playersInTournament: "Игроки",
+         players: "Игроки",
+         playerDetails: "Полная информация об игроке",
+         playerName: "Имя",
+         playerSurname: "Фамилия",
+         playerGender: "Пол",
+         playerHandicap: "Гандикап",
+         playerScorecards: "Счетные карточки",
        }
      }
    },
