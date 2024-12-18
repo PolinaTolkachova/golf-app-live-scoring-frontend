@@ -17,18 +17,13 @@ const Tournament = () => {
     const fetchTournamentDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:8082/tournament/${id}`);
-
-        // Sort tournament players alphabetically by name
         if (response.data && response.data.players) {
           response.data.players.sort((a, b) => {
             const nameA = a.user.name.toLowerCase();
             const nameB = b.user.name.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
+            return nameA.localeCompare(nameB);
           });
         }
-
         setTournament(response.data);
       } catch (error) {
         console.error('Error fetching tournament details:', error);
@@ -38,13 +33,10 @@ const Tournament = () => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get('http://localhost:8082/player');
-        // Ensure players are sorted alphabetically by name
         const sortedPlayers = response.data.sort((a, b) => {
           const nameA = a.user.name.toLowerCase();
           const nameB = b.user.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
+          return nameA.localeCompare(nameB);
         });
         setPlayers(sortedPlayers);
       } catch (error) {
@@ -70,28 +62,19 @@ const Tournament = () => {
 
   const handleAddPlayers = async () => {
     try {
-      // Create player objects from the selected player IDs
       const playerObjects = Array.from(selectedPlayers).map(playerId => {
         return players.find(player => player.id === playerId);
       });
-
       const updatedTournament = { ...tournament, players: playerObjects };
       await axios.put(`http://localhost:8082/tournament/${id}`, updatedTournament);
-
-      // Refetch the updated tournament details
       const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
-
-      // Sort newly fetched tournament data
       if (updatedResponse.data && updatedResponse.data.players) {
         updatedResponse.data.players.sort((a, b) => {
           const nameA = a.user.name.toLowerCase();
           const nameB = b.user.name.toLowerCase();
-          if (nameA < nameB) return -1;
-          if (nameA > nameB) return 1;
-          return 0;
+          return nameA.localeCompare(nameB);
         });
       }
-
       setTournament(updatedResponse.data);
     } catch (error) {
       console.error('Error updating tournament:', error);
@@ -124,7 +107,7 @@ const Tournament = () => {
                 {tournament.players && tournament.players.length > 0 ? (
                   tournament.players.map(player => (
                     <li key={player.id} className="list-group-item">
-                      <Link to={`/player/${player.id}`}>
+                      <Link to={`/tournament/${id}/player/${player.id}`}>
                         {player.user.name} {player.user.surname}
                       </Link>
                     </li>
@@ -145,11 +128,9 @@ const Tournament = () => {
           <div className="list-group players-list-scroll">
             {players.map(player => (
               <div key={player.id} className="list-group-item">
-                <input
-                  type="checkbox"
+                <input type="checkbox"
                   checked={selectedPlayers.has(player.id)}
-                  onChange={() => handlePlayerSelection(player.id)}
-                />
+                  onChange={() => handlePlayerSelection(player.id)} />
                 <span className="ms-2">{player.user.name} {player.user.surname}</span>
               </div>
             ))}

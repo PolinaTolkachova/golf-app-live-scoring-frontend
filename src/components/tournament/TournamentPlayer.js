@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ScoreCard from './../scoreCard/ScoreCard';
 
-const Player = () => {
+const TournamentPlayer = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
+  const [scorecards, setScorecards] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:8082/player/${id}`)
@@ -17,6 +19,13 @@ const Player = () => {
         console.error('Error fetching player:', error);
       });
 
+    axios.get(`http://localhost:8082/player/${id}/scorecards`)
+      .then(response => {
+        setScorecards(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching scorecards:', error);
+      });
   }, [id]);
 
   if (!player) return <div className="text-center">{t('loading')}</div>;
@@ -45,8 +54,10 @@ const Player = () => {
         </tbody>
       </table>
 
+      <ScoreCard />
+
     </div>
   );
 };
 
-export default Player;
+export default TournamentPlayer;

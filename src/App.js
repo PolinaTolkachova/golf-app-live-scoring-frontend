@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-do
 import Tournaments from './components/tournament/Tournaments';
 import Players from './components/player/Players';
 import Leaderboards from './components/leaderboard/Leaderboards';
+import Leaderboard from './components/leaderboard/Leaderboard';
 import AddTournament from './components/tournament/AddTournament';
 import Tournament from './components/tournament/Tournament';
+import TournamentPlayer from './components/tournament/TournamentPlayer';
 import Player from './components/player/Player';
 import LanguageSwitcher from './components/languageSwitcher/LanguageSwitcher';
 import i18n from './components/i18n';
 import './App.css';
-import Leaderboard from './components/leaderboard/Leaderboard';
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/tournament/:id" component={Tournament} />
           <Route path="/player/:id" component={Player} />
           <Route path="/leaderboard/:id" component={Leaderboard} />
+          <Route path="/tournament/:tournamentId/player/:playerId" component={TournamentPlayer} />
         </Switch>
         <div>
             <LanguageSwitcher />
