@@ -60,26 +60,30 @@ const Tournament = () => {
     });
   };
 
-  const handleAddPlayers = async () => {
+const handleAddPlayers = async () => {
     try {
-      const playerObjects = Array.from(selectedPlayers).map(playerId => {
-        return players.find(player => player.id === playerId);
-      });
-      const updatedTournament = { ...tournament, players: playerObjects };
-      await axios.put(`http://localhost:8082/tournament/${id}`, updatedTournament);
-      const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
-      if (updatedResponse.data && updatedResponse.data.players) {
-        updatedResponse.data.players.sort((a, b) => {
-          const nameA = a.user.name.toLowerCase();
-          const nameB = b.user.name.toLowerCase();
-          return nameA.localeCompare(nameB);
-        });
-      }
-      setTournament(updatedResponse.data);
+        const selectedPlayerIds = Array.from(selectedPlayers);
+        const existingPlayerIds = tournament.players.map(player => player.id);
+        const updatedPlayerIds = Array.from(new Set([...existingPlayerIds, ...selectedPlayerIds]));
+        const playerObjects = players.filter(player => updatedPlayerIds.includes(player.id));
+        const updatedTournament = { ...tournament, players: playerObjects };
+
+        await axios.put(`http://localhost:8082/tournament/${id}`, updatedTournament);
+
+        const updatedResponse = await axios.get(`http://localhost:8082/tournament/${id}`);
+
+        if (updatedResponse.data && updatedResponse.data.players) {
+            updatedResponse.data.players.sort((a, b) => {
+                const nameA = a.user.name.toLowerCase();
+                const nameB = b.user.name.toLowerCase();
+                return nameA.localeCompare(nameB);
+            });
+        }
+        setTournament(updatedResponse.data);
     } catch (error) {
-      console.error('Error updating tournament:', error);
+        console.error('Error updating tournament:', error);
     }
-  };
+};
 
   if (!tournament) return <div className="text-center">{t('loading')}</div>;
 
