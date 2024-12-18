@@ -2,18 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// Component for displaying individual tournament rows
-const TournamentRow = ({ tournament, onClick }) => (
-  <tr onClick={onClick} style={{ cursor: 'pointer' }}>
-    <td>{tournament.name}</td>
-    <td>{tournament.location}</td>
-    <td>{tournament.startDate}</td>
-    <td>{tournament.finishDate}</td>
-    <td>{tournament.scoringType}</td>
-    <td>{tournament.format}</td>
-  </tr>
-);
+import TournamentRow from './TournamentRow'; // Import the new TournamentRow component
 
 const Tournaments = () => {
   const [tournaments, setTournaments] = useState([]);
