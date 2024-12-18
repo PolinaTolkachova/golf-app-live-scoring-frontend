@@ -3,18 +3,35 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Component for displaying individual tournament rows
+const TournamentRow = ({ tournament, onClick }) => (
+  <tr onClick={onClick} style={{ cursor: 'pointer' }}>
+    <td>{tournament.name}</td>
+    <td>{tournament.location}</td>
+    <td>{tournament.startDate}</td>
+    <td>{tournament.finishDate}</td>
+    <td>{tournament.scoringType}</td>
+    <td>{tournament.format}</td>
+  </tr>
+);
+
 const Tournaments = () => {
   const [tournaments, setTournaments] = useState([]);
+  const [error, setError] = useState(null);
   const history = useHistory();
 
+  const fetchTournaments = async () => {
+    try {
+      const response = await axios.get('http://localhost:8082/tournament');
+      setTournaments(response.data);
+    } catch (error) {
+      console.error('There was an error fetching the tournaments!', error);
+      setError('Could not fetch tournaments. Please try again later.');
+    }
+  };
+
   useEffect(() => {
-    axios.get('http://localhost:8082/tournament')
-      .then(response => {
-        setTournaments(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the tournaments!', error);
-      });
+    fetchTournaments();
   }, []);
 
   return (
@@ -25,6 +42,7 @@ const Tournaments = () => {
           Add Tournament
         </button>
       </div>
+      {error && <div className="alert alert-danger">{error}</div>}
       <table className="table table-striped table-bordered">
         <thead className="thead-dark">
           <tr>
@@ -38,14 +56,11 @@ const Tournaments = () => {
         </thead>
         <tbody>
           {tournaments.map(tournament => (
-            <tr key={tournament.id} onClick={() => history.push(`/tournament/${tournament.id}`)} style={{ cursor: 'pointer' }}>
-              <td>{tournament.name}</td>
-              <td>{tournament.location}</td>
-              <td>{tournament.startDate}</td>
-              <td>{tournament.finishDate}</td>
-              <td>{tournament.scoringType}</td>
-              <td>{tournament.format}</td>
-            </tr>
+            <TournamentRow
+              key={tournament.id}
+              tournament={tournament}
+              onClick={() => history.push(`/tournament/${tournament.id}`)}
+            />
           ))}
         </tbody>
       </table>
