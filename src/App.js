@@ -36,14 +36,14 @@ const App = () => {
           </ul>
         </nav>
         <Switch>
-          <Route path="/" exact component={Tournaments} />
-          <Route path="/players" component={Players} />
-          <Route path="/leaderboards" component={Leaderboards} />
-          <Route path="/add-tournament" component={AddTournament} />
-          <Route path="/tournament/:id" component={Tournament} />
-          <Route path="/player/:id" component={Player} />
-          <Route path="/leaderboard/:id" component={Leaderboard} />
-          <Route path="/tournament/:tournamentId/player/:playerId" component={TournamentPlayer} />
+            <Route path="/" exact component={Tournaments} />
+            <Route path="/players" component={Players} />
+            <Route path="/leaderboards" component={Leaderboards} />
+            <Route path="/tournament/:tournamentId/player/:playerId" component={TournamentPlayer} />
+            <Route path="/tournament/:id" component={Tournament} />
+            <Route path="/add-tournament" component={AddTournament} />
+            <Route path="/player/:id" component={Player} />
+            <Route path="/leaderboard/:id" component={Leaderboard} />
         </Switch>
         <div>
             <LanguageSwitcher />
