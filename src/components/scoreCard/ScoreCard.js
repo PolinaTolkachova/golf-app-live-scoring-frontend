@@ -1,49 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const ScoreCard = () => {
   const { id } = useParams();
-  const [scorecard, setScorecard] = useState(null);
+  const { t } = useTranslation();
+  const [scores, setScores] = useState(Array(18).fill(''));
+  const [successMessage, setSuccessMessage] = useState('');
 
-  useEffect(() => {
-    axios.get(`http://localhost:8082/scorecard/${id}`)
+  const handleScoreChange = (index, value) => {
+    const newScores = [...scores];
+    newScores[index] = value;
+    setScores(newScores);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const scoreData = scores.reduce((acc, score, index) => {
+      acc[index + 1] = score; // Maps hole number to score
+      return acc;
+    }, {});
+
+    axios.post(`http://localhost:8082/player/${id}/scorecards`, { holeScores: scoreData })
       .then(response => {
-        setScorecard(response.data);
+        setSuccessMessage(t('scorecardSaved')); // assuming you have a translation key for this
+        setScores(Array(18).fill('')); // reset scores
       })
       .catch(error => {
-        console.error('Error fetching scorecard:', error);
+        console.error('Error saving scorecard:', error);
       });
-  }, [id]);
-
-  if (!scorecard) return <div>Loading...</div>;
+  };
 
   return (
-    <div className="container mt-4">
-      <h2>ScoreCard for Tournament: {scorecard.tournament.name}</h2>
-      <h4>Players:</h4>
-      <ul>
-        {scorecard.players.map(player => (
-          <li key={player.id}>{player.user.name} {player.user.surname}</li>
-        ))}
-      </ul>
-      <h4>Scores:</h4>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Hole Number</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(scorecard.holeScores).map(([holeNumber, score]) => (
-            <tr key={holeNumber}>
-              <td>{holeNumber}</td>
-              <td>{score}</td>
+    <div className="scorecard-container mt-4">
+      <h3>{t('Score card')}</h3>
+      <form onSubmit={handleSubmit}>
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>{t('Hole')}</th>
+              <th>{t('Score')}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {scores.map((score, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <input
+                    type="number"
+                    value={score}
+                    min="0"
+                    onChange={(e) => handleScoreChange(index, e.target.value)}
+                    required
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button type="submit" className="btn btn-primary">{t('Submit scores')}</button>
+      </form>
+      {successMessage && <div className="alert alert-success mt-2">{successMessage}</div>}
     </div>
   );
 };

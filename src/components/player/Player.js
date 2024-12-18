@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ScoreCard from './../scoreCard/ScoreCard';
 
 const Player = () => {
   const { t } = useTranslation();
@@ -53,32 +54,8 @@ const Player = () => {
         </tbody>
       </table>
 
-      <h3>{t('playerScorecards')}</h3>
-      {scorecards.length > 0 ? (
-        scorecards.map(scorecard => (
-          <div key={scorecard.id} className="mb-3">
-            <h5>{scorecard.tournament.name}</h5>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Hole</th>
-                  <th>Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(scorecard.holeScores).map(([hole, score]) => (
-                  <tr key={hole}>
-                    <td>{hole}</td>
-                    <td>{score}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))
-      ) : (
-        <p>No scorecards available.</p>
-      )}
+      <ScoreCard />
+
     </div>
   );
 };
