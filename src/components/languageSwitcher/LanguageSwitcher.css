@@ -12,7 +12,7 @@
   background-color: #f0f0f0;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .language-switcher button:hover {

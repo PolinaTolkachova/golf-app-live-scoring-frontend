@@ -26,6 +26,7 @@ nav ul li a {
   padding: 8px 16px;
   border-radius: 4px;
   transition: background-color 0.3s;
+  font-size: 20px;
 }
 
 nav ul li a:hover {
@@ -38,5 +39,5 @@ nav ul li a:hover {
 }
 
 .nav-language-switcher {
-  margin-left: auto; /* Moves the language switcher to the right edge */
+  margin-left: auto;
 }
