@@ -19,35 +19,29 @@ const App = () => {
         <nav>
           <ul>
             <li>
-              <NavLink exact to="/" activeClassName="active">
-                Tournaments
-              </NavLink>
+              <NavLink exact to="/" activeClassName="active">Tournaments</NavLink>
             </li>
             <li>
-              <NavLink to="/players" activeClassName="active">
-                Players
-              </NavLink>
+              <NavLink to="/players" activeClassName="active">Players</NavLink>
             </li>
             <li>
-              <NavLink to="/leaderboards" activeClassName="active">
-                Leaderboards
-              </NavLink>
+              <NavLink to="/leaderboards" activeClassName="active">Leaderboards</NavLink>
+            </li>
+            <li className="nav-language-switcher">
+              <LanguageSwitcher />
             </li>
           </ul>
         </nav>
         <Switch>
-            <Route path="/" exact component={Tournaments} />
-            <Route path="/players" component={Players} />
-            <Route path="/leaderboards" component={Leaderboards} />
-            <Route path="/tournament/:tournamentId/player/:playerId" component={TournamentPlayer} />
-            <Route path="/tournament/:id" component={Tournament} />
-            <Route path="/add-tournament" component={AddTournament} />
-            <Route path="/player/:id" component={Player} />
-            <Route path="/leaderboard/:id" component={Leaderboard} />
+          <Route path="/" exact component={Tournaments} />
+          <Route path="/players" component={Players} />
+          <Route path="/leaderboards" component={Leaderboards} />
+          <Route path="/tournament/:tournamentId/player/:playerId" component={TournamentPlayer} />
+          <Route path="/tournament/:id" component={Tournament} />
+          <Route path="/add-tournament" component={AddTournament} />
+          <Route path="/player/:id" component={Player} />
+          <Route path="/leaderboard/:id" component={Leaderboard} />
         </Switch>
-        <div>
-            <LanguageSwitcher />
-        </div>
       </div>
     </Router>
   );
